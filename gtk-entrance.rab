@@ -102,3 +102,49 @@ Ruby/GTK2はインストール済みですか？
   (1) イベントを待つ
   (1) イベントに応じて処理を行う
   (1) 1に戻る
+
+= 座学は以上です。そろそろインストールできましたか？
+
+== property
+
+: as_large_as_possible
+   false
+
+= では、実際に手を動かしてRuby/GTK2を使ったデスクトップアプリケーションを作成していきます
+
+== property
+
+: as_large_as_possible
+   false
+
+= Hello, GUI!
+
+  # coderay ruby
+  require "gtk2"
+
+  window = Gtk::Window.new
+
+  window.signal_connect("destroy") do
+    Gtk.main_quit
+  end
+
+  window.show_all
+
+  Gtk.main
+
+= Hello, GUI!
+
+  # coderay ruby
+  require "gtk2" #Ruby/GTK2を使う準備
+
+  # ウィンドウ・ウィジェットのオブジェクトを作成
+  window = Gtk::Window.new
+
+  # ウィンドウが閉じられたら処理が実行される
+  window.signal_connect("destroy") do
+    Gtk.main_quit #メインループ終了
+  end
+
+  window.show_all #ウィジェットを画面に表示
+
+  Gtk.main #メインループ開始
