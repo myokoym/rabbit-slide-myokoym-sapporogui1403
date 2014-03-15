@@ -148,3 +148,146 @@ Ruby/GTK2はインストール済みですか？
   window.show_all #ウィジェットを画面に表示
 
   Gtk.main #メインループ開始
+
+= タイトルを設定
+
+  # coderay ruby
+  window = Gtk::Window.new
+
+  # ウィンドウのtitleプロパティに設定
+  window.title = "Image Viewer sample"
+
+  window.signal_connect("destroy") do
+    Gtk.main_quit
+  end
+
+= 画像を表示
+
+  # coderay ruby
+    Gtk.main_quit
+  end
+
+  path = ARGV[0]
+
+  image = Gtk::Image.new
+  image.pixbuf = Gdk::Pixbuf.new(path)
+  window.add(image)
+
+= 2枚以上並べる
+
+  # coderay ruby
+
+  hbox = Gtk::HBox.new(false, 8)
+  hbox.border_width = 8
+  window.add(hbox)
+
+  ARGV.each do |path|
+    image = Gtk::Image.new
+    image.pixbuf = Gdk::Pixbuf.new(path)
+    hbox.add(image)
+  end
+
+= ワイルドカードを許容
+
+  # coderay ruby
+  ARGV.each do |path_or_wildcard|
+    Dir.glob(path_or_wildcard) do |path|
+    image = Gtk::Image.new
+    image.pixbuf = Gdk::Pixbuf.new(path)
+    hbox.add(image)
+    end
+  end
+
+= インデント
+
+  # coderay ruby
+  ARGV.each do |path_or_wildcard|
+    Dir.glob(path_or_wildcard) do |path|
+      image = Gtk::Image.new
+      image.pixbuf = Gdk::Pixbuf.new(path)
+      hbox.add(image)
+    end
+  end
+
+= 画像以外をスキップ
+
+  # coderay ruby
+  begin
+    pixbuf = Gdk::Pixbuf.new(path)
+  rescue GLib::FileError, Gdk::PixbufError
+    $stderr.puts($!.message)
+    next
+  end
+
+  image = Gtk::Image.new
+  image.pixbuf = pixbuf
+  hbox.add(image)
+
+= スクロールバーを追加
+
+  # coderay ruby
+
+  scrolled_window = Gtk::ScrolledWindow.new
+  window.add(scrolled_window)
+
+  hbox = Gtk::HBox.new(false, 8)
+  hbox.border_width = 8
+  scrolled_window.add_with_viewport(hbox)
+
+= スクロール不要時は消す
+
+  # coderay ruby
+
+  scrolled_window = Gtk::ScrolledWindow.new
+  scrolled_window.set_policy(:automatic,
+                             :automatic)
+  window.add(scrolled_window)
+
+  hbox = Gtk::HBox.new(false, 8)
+  hbox.border_width = 8
+  scrolled_window.add_with_viewport(hbox)
+
+= デフォルトサイズを設定
+
+  # coderay ruby
+
+  window = Gtk::Window.new
+
+  window.title = "Image Viewer sample"
+
+  window.set_default_size(640, 480)
+
+  window.signal_connect("destroy") do
+    Gtk.main_quit
+  end
+
+= 右クリックメニューの準備
+
+  # coderay ruby
+  scrolled_window.add_with_viewport(hbox)
+
+  menu = Gtk::Menu.new
+  menu_item = Gtk::ImageMenuItem.new(Gtk::Stock::DELETE)
+  menu_item.signal_connect("activate") do
+    hbox.remove(menu.attach_widget)
+  end
+  menu.append(menu_item)
+  menu.show_all
+
+  ARGV.each do |path_or_wildcard|
+
+= 右クリックで削除機能
+
+  # coderay ruby
+  event_box = Gtk::EventBox.new
+  event_box.signal_connect("button-press-event") do |widget, event|
+    if event.kind_of?(Gdk::EventButton) and event.button == 3
+      menu.attach_widget = widget
+      menu.popup(nil, nil, event.button, event.time)
+    end
+  end
+  hbox.add(event_box)
+
+  image = Gtk::Image.new
+  image.pixbuf = pixbuf
+  event_box.add(image)
