@@ -291,3 +291,14 @@ Ruby/GTK2はインストール済みですか？
   image = Gtk::Image.new
   image.pixbuf = pixbuf
   event_box.add(image)
+
+= 参考リンク
+
+Ruby/GTK2 チュートリアル\n
+(('note:http://ruby-gnome2.sourceforge.jp/ja/hiki.cgi?gtk2-tut'))
+
+Ruby/GTK2 sample\n
+(('note:https://github.com/ruby-gnome2/ruby-gnome2/tree/master/gtk2/sample'))
+
+Ruby/GTK3 sample\n
+(('note:https://github.com/ruby-gnome2/ruby-gnome2/tree/master/gtk3/sample'))
