@@ -153,6 +153,10 @@ Ruby/GTK2はインストール済みですか？
 
   Gtk.main #メインループ開始
 
+= 実行
+
+    $ ruby hello_gui.rb
+
 = タイトルを設定
 
   # coderay ruby
@@ -179,6 +183,10 @@ Ruby/GTK2はインストール済みですか？
   image.pixbuf = Gdk::Pixbuf.new(path)
   window.add(image) #ウィンドウに画像を追加
 
+= 実行
+
+    $ ruby image-viewer.rb ファイル名
+
 = 画像を2枚以上並べる
 
   # coderay ruby
@@ -193,6 +201,10 @@ Ruby/GTK2はインストール済みですか？
     hbox.add(image)
   end
 
+= 実行
+
+    $ ruby image-viewer.rb ファイル名 ファイル名
+
 = ワイルドカードを許容
 
   # coderay ruby
@@ -203,6 +215,10 @@ Ruby/GTK2はインストール済みですか？
       hbox.add(image)
     end
   end
+
+= 実行
+
+    $ ruby image-viewer.rb ディレクトリ名/*.png
 
 = 画像以外をスキップ
 
@@ -217,6 +233,10 @@ Ruby/GTK2はインストール済みですか？
   image = Gtk::Image.new
   image.pixbuf = pixbuf
   hbox.add(image)
+
+= 実行
+
+    $ ruby image-viewer.rb ディレクトリ名/*
 
 = デフォルトサイズを設定
 
