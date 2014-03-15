@@ -103,7 +103,7 @@ Ruby/GTK2はインストール済みですか？
   (1) イベントに応じて処理を行う
   (1) 1に戻る
 
-= 座学は以上です。そろそろインストールできましたか？
+= 座学は以上ですが、そろそろインストールできましたか？
 
 == property
 
@@ -116,6 +116,10 @@ Ruby/GTK2はインストール済みですか？
 
 : as_large_as_possible
    false
+
+= サンプルコード全文
+
+(('note:https://gist.github.com/myokoym/9489619'))
 
 = Hello, GUI!
 
@@ -152,6 +156,7 @@ Ruby/GTK2はインストール済みですか？
 = タイトルを設定
 
   # coderay ruby
+
   window = Gtk::Window.new
 
   # ウィンドウのtitleプロパティに設定
@@ -164,6 +169,7 @@ Ruby/GTK2はインストール済みですか？
 = 画像を表示
 
   # coderay ruby
+  window.signal_connect("destroy") do
     Gtk.main_quit
   end
 
@@ -171,9 +177,9 @@ Ruby/GTK2はインストール済みですか？
 
   image = Gtk::Image.new
   image.pixbuf = Gdk::Pixbuf.new(path)
-  window.add(image)
+  window.add(image) #ウィンドウに画像を追加
 
-= 2枚以上並べる
+= 画像を2枚以上並べる
 
   # coderay ruby
 
@@ -188,17 +194,6 @@ Ruby/GTK2はインストール済みですか？
   end
 
 = ワイルドカードを許容
-
-  # coderay ruby
-  ARGV.each do |path_or_wildcard|
-    Dir.glob(path_or_wildcard) do |path|
-    image = Gtk::Image.new
-    image.pixbuf = Gdk::Pixbuf.new(path)
-    hbox.add(image)
-    end
-  end
-
-= インデント
 
   # coderay ruby
   ARGV.each do |path_or_wildcard|
@@ -222,6 +217,20 @@ Ruby/GTK2はインストール済みですか？
   image = Gtk::Image.new
   image.pixbuf = pixbuf
   hbox.add(image)
+
+= デフォルトサイズを設定
+
+  # coderay ruby
+
+  window = Gtk::Window.new
+
+  window.title = "Image Viewer sample"
+
+  window.set_default_size(640, 480)
+
+  window.signal_connect("destroy") do
+    Gtk.main_quit
+  end
 
 = スクロールバーを追加
 
@@ -247,23 +256,11 @@ Ruby/GTK2はインストール済みですか？
   hbox.border_width = 8
   scrolled_window.add_with_viewport(hbox)
 
-= デフォルトサイズを設定
-
-  # coderay ruby
-
-  window = Gtk::Window.new
-
-  window.title = "Image Viewer sample"
-
-  window.set_default_size(640, 480)
-
-  window.signal_connect("destroy") do
-    Gtk.main_quit
-  end
-
 = 右クリックメニューの準備
 
   # coderay ruby
+  hbox = Gtk::HBox.new(false, 8)
+  hbox.border_width = 8
   scrolled_window.add_with_viewport(hbox)
 
   menu = Gtk::Menu.new
@@ -273,8 +270,6 @@ Ruby/GTK2はインストール済みですか？
   end
   menu.append(menu_item)
   menu.show_all
-
-  ARGV.each do |path_or_wildcard|
 
 = 右クリックで削除機能
 
