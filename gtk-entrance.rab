@@ -279,6 +279,7 @@ Ruby/GTK2はインストール済みですか？
 = 右クリックメニューの準備
 
   # coderay ruby
+
   hbox = Gtk::HBox.new(false, 8)
   hbox.border_width = 8
   scrolled_window.add_with_viewport(hbox)
@@ -294,6 +295,7 @@ Ruby/GTK2はインストール済みですか？
 = 右クリックで削除機能
 
   # coderay ruby
+
   event_box = Gtk::EventBox.new
   event_box.signal_connect("button-press-event") do |widget, event|
     if event.kind_of?(Gdk::EventButton) and event.button == 3

@@ -41,7 +41,7 @@ ARGV.each do |path_or_wildcard|
         menu.popup(nil, nil, event.button, event.time)
       end
     end
-    hbox.add(event_box)
+    hbox.pack_start(event_box, false, false, 0)
 
     image = Gtk::Image.new
     image.pixbuf = pixbuf
